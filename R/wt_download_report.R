@@ -1,14 +1,15 @@
-#' wt_download_report Download reports for ARUs
+#' Download reports for ARUs from WildTrax
 #'
-#' @param project_id
-#' @param output_directory
-#' @param include_birdnet
+#' Exported to csvs
 #'
-#' @return
+#' @param project_ids Vector of project ids to download
+#' @param output_directory output directory to export to
+#' @param include_birdnet Logical include birdnet outputs
+#'
+#' @return NULL
 #' @export
 #'
-#' @examples
-wt_download_report <- function(project_ids,  output_directory = NULL, include_birdnet= FALSE ){
+wt_download_report <- function(project_ids, output_directory = NULL, include_birdnet = FALSE) {
   secret <- Sys.getenv("WT_TOKEN")
   query_list <- list(
     projectIds = project_ids,
@@ -29,7 +30,7 @@ wt_download_report <- function(project_ids,  output_directory = NULL, include_bi
   )
 
 
- u <- gen_u()
+  u <- gen_u()
   # Prepare temporary file:
   tmp <- tempfile(fileext = ".zip")
   # tmp directory
@@ -38,17 +39,14 @@ wt_download_report <- function(project_ids,  output_directory = NULL, include_bi
   r <- httr2::request("https://www-api.wildtrax.ca/") |>
     httr2::req_url_path_append("bis/download-report") |>
     httr2::req_url_query(!!!query_list,
-                  accept = "application/zip",.multi = 'explode'
+      accept = "application/zip", .multi = "explode"
     ) |>
     httr2::req_auth_bearer_token(secret) |>
-    httr2::req_user_agent(u)|>
+    httr2::req_user_agent(u) |>
     httr2::req_progress() |>
     httr2::req_perform(path = tmp)
 
-  if(!rlang::is_null(output_directory)){
-    # file.copy(tmp, output_directory)
-    unzip(tmp, exdir= output_directory)
+  if (!rlang::is_null(output_directory)) {
+    unzip(tmp, exdir = output_directory)
   }
-
-
 }

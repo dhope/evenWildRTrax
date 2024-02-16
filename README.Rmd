@@ -66,9 +66,11 @@ projects <- wt_download_summary()
 Then you can download one or multiple projects using the `id` column in your projects
 table
 ```{r download, eval=F}
-full_download <- wt_download_report(project_id = c(6512,165),
-                   output_directory = "Path/to/store/csvs/",
-                   include_birdnet = FALSE )
+full_download <- wt_download_report(
+  project_id = c(6512, 165),
+  output_directory = "Path/to/store/csvs/",
+  include_birdnet = FALSE
+)
 ```
 
 
