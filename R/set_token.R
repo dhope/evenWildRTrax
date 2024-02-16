@@ -12,3 +12,4 @@ set_wt_token <- function(){
               add WT_TOKEN='your token here' to the text. However remember this
               text will be discoverable by anyone, so do not share your token.")
 }
+
