@@ -1,3 +1,11 @@
+#' Download token using WildTrax password
+#'
+#' Token set to WT_TOKEN
+#'
+#' @param username String. Wildtrax username
+#'
+#' @return NULL. Does not return anything
+#' @export
 get_wt_token <- function(username){
 
   cid <- rawToChar(
