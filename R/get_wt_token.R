@@ -61,18 +61,29 @@ get_wt_token <- function(username){
 #
 #
 # client <- oauth_client(
-#   id = "david.hope",
-#   secret = obfuscated(askpass::askpass()),
+#   id = cid,
 #   token_url = "https://abmi.auth0.com/oauth/token",
 #   name = "WT-token"
 # )
-#
-# token <- oauth_
+
+
+# #
+# # token <- oauth_
 # oauth_flow_auth_code(
 #   client = client,
-#   auth_url = "https://abmi.auth0.com/oauth/authorize"
+#   auth_url = "https://abmi.auth0.com/login"
 # )
-#
+
+
+# token <- oauth_token_cached(
+#   client = client,
+#   flow = oauth_flow_auth_code,
+#   flow_params = list(
+#     auth_url = "https://abmi.auth0.com/login"
+#   ),
+#   cache_disk = TRUE
+# )
+
 # tok <-
 #   request("http://www.wildtrax.ca") |>
 #   req_oauth_password(client = client, username = 'david.hope', cache_disk = T)
