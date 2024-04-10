@@ -15,17 +15,17 @@ get_wt_token <- function(username){
              0x69)))
 
 
-  req <-  request("https://abmi.auth0.com/")
+  req <-  httr2::request("https://abmi.auth0.com/")
 
   r <-   req |>
-    req_url_path("oauth/token") |>
-    req_body_form(
+    httr2::req_url_path("oauth/token") |>
+    httr2::req_body_form(
       audience = "http://www.wildtrax.ca",
       grant_type = "password",
       client_id = cid,
       username = username,
       password = askpass::askpass()) |>
-    req_perform()
+    httr2::req_perform()
 
   # r |> httr2::resp_content_type()
 
